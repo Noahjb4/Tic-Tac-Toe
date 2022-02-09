@@ -2,12 +2,12 @@ public abstract class Board {
     private int height;
     private int width;
 
-    private char[][] tiles;
+    private Cell[] tiles;
 
     public Board(int h, int w){
         this.height = h;
         this.width = w;
-        this.tiles = new char[height][width];
+        this.tiles = new Cell[height*width];
     }
 
     public Board(int s){
@@ -26,7 +26,7 @@ public abstract class Board {
         return width;
     }
 
-    public char[][] getTiles() {
+    public Cell[] getTiles() {
         return tiles;
     }
 
@@ -41,10 +41,10 @@ public abstract class Board {
         for(int r = 0; r<height; r++){
             b += "|";
             for (int c = 0; c < width; c++) {
-                if (tiles[r][c] == '\0') {
+                if (tiles[(r*3)+c] == null) {
                     b += "   |";
                 }else {
-                    b += " "+ tiles[r][c]+ " |";
+                    b += " "+ tiles[(r*3)+c].getContents() + " |";
                 }
             }
 

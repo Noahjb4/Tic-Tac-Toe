@@ -1,13 +1,13 @@
 public class Player {
-    private char checker;
+    private Checker checker;
     private int wins;
     public Player(char c){
         this.wins = 0;
-        this.checker = c;
+        this.checker = new Checker(c);
     }
 
     public char getChecker(){
-        return this.checker;
+        return this.checker.getValue();
     }
 
     public String toString() {

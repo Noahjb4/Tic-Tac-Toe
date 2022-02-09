@@ -6,9 +6,9 @@ public class TTTBoard extends Board {
 
     public void addChecker(Player p, int loc ){
         loc -=1;
-        int r = loc/super.getHeight();
-        int c = loc%super.getWidth();
-        super.getTiles()[r][c] = p.getChecker();
+//        int r = loc/super.getHeight();
+//        int c = loc%super.getWidth();
+        super.getTiles()[loc] = new Cell(p.getChecker());
     }
 
     public boolean isWinFor(Player p) {
