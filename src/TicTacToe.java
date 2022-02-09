@@ -5,7 +5,7 @@ public class TicTacToe implements Game{
 
 
     public static void play(){
-        Scanner console = new Scanner(System.in);
+
 
 //        int height;
 //        int width;
@@ -15,16 +15,7 @@ public class TicTacToe implements Game{
         Player player2;
 
         System.out.println("Welcome to the Tic-Tac-Toe game \nEnter board size: ");
-        size = console.nextInt();
-//        while (true) {
-//            if (!console.hasNextInt()) {
-//                System.out.println("Please enter a valid number: ");
-//            } else {
-//                height = console.nextInt();
-//                break;
-//            }
-//            console.reset();
-//        }
+        size = validInt(3,Integer.MAX_VALUE);
 
 //        System.out.println("Enter board width: ");
 //        width = console.nextInt();
@@ -47,13 +38,34 @@ public class TicTacToe implements Game{
     }
 
     private static boolean move(Player p, TTTBoard b) {
-        Scanner scan = new Scanner(System.in);
         int move;
 
-        System.out.println("game.Player "+p.getChecker()+" Enter your move:");
-        move = scan.nextInt();
+        System.out.println("Player "+p.getChecker()+" Enter your move:");
+
+        move = validInt(1,(b.getHeight()*b.getWidth()));
+
         b.addChecker(p, move);
         System.out.println(b);
         return true;
+    }
+
+    private static int validInt(int lBound, int uBound){
+        Scanner console = new Scanner(System.in);
+        int num;
+
+        while (true) {
+            try {
+                num = console.nextInt();
+                if (num < lBound || num > uBound) {
+                    throw new Exception("");
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Please enter a valid number: ");
+                console.nextLine();
+            }
+        }
+
+        return num;
     }
 }
