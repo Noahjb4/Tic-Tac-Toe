@@ -1,3 +1,8 @@
+/**
+ * Cell --- Class that represents a container for an Object
+ * @author Noah Jean-Baptiste
+ */
+
 public class Cell {
     private Object contents;
 

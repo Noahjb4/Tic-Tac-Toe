@@ -1,2 +1,4 @@
 public abstract class Piece {
+
+
 }
