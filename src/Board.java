@@ -1,8 +1,3 @@
-/**
- * Board --- Abstract class that represents a grid of Cells
- * @author Noah Jean-Baptiste
- */
-
 public abstract class Board {
     private int height;
     private int width;
