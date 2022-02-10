@@ -8,6 +8,10 @@ public abstract class Board {
         this.height = h;
         this.width = w;
         this.tiles = new Cell[height*width];
+
+        for (int i = 0; i < tiles.length; i++) {
+            tiles[i] = new Cell();
+        }
     }
 
     public Board(int s){
@@ -32,6 +36,8 @@ public abstract class Board {
 
     public abstract boolean isWinFor(Player p);
 
+    public abstract boolean isTie();
+
     public String toString() {
         String b = "+";
         for (int c = 0; c < width; c++) {
@@ -41,10 +47,10 @@ public abstract class Board {
         for(int r = 0; r<height; r++){
             b += "|";
             for (int c = 0; c < width; c++) {
-                if (tiles[(r*3)+c] == null) {
+                if (tiles[(r*width)+c].getContents() == null) {
                     b += "   |";
                 }else {
-                    b += " "+ tiles[(r*3)+c].getContents() + " |";
+                    b += " "+ tiles[(r*width)+c].getContents() + " |";
                 }
             }
 

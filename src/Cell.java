@@ -6,6 +6,10 @@ public class Cell {
 
     }
 
+    public Cell(){
+        this.contents = null;
+    }
+
     public Object getContents() {
         return contents;
     }

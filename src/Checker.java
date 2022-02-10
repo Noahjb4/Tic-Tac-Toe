@@ -1,11 +1,26 @@
-public class Checker extends Piece{
-    private char value;
+import java.util.Objects;
 
-    public Checker(char c){
+public class Checker extends Piece{
+    private String value;
+
+    public Checker(String c){
         this.value = c;
     }
 
-    public char getValue() {
+    public String getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    public boolean equals(Checker c) {
+       if (this.value.equals(c.getValue())){
+           return true;
+       }
+       return false;
+    }
+
 }
