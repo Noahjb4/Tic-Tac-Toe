@@ -1,7 +1,3 @@
-/**
- * TicTacToe --- Class that implements Game interface and
- * @author Noah Jean-Baptiste
- */
 
 import java.util.*;
 
@@ -10,11 +6,14 @@ public class TicTacToe implements Game{
 
     public static void play(){
 
+
+//        int height;
+//        int width;
         int size;
         TTTBoard b;
-        TTTPlayer player1 = new TTTPlayer("X");
-        TTTPlayer player2 = new TTTPlayer("O");
-        TTTPlayer winner;
+        Player player1 = new Player("X");
+        Player player2 = new Player("O");
+        Player winner;
 
         while(true) {
             System.out.println("Welcome to the Tic-Tac-Toe game \nEnter board size: ");
@@ -31,20 +30,20 @@ public class TicTacToe implements Game{
                 System.out.println("Would you like to play again?  [y/n]");
 
             } else {
-                System.out.println( "Player "+winner.getName() + " wins!");
+                System.out.println("Player " + winner.getChecker().getValue() + " wins!");
                 System.out.println("Would you like to play again?  [y/n]");
             }
 
             if (isYesNo() == false) {
-                System.out.println("Wins for Player " + player1.getName() + ": " + player1.getWins());
-                System.out.println("Wins for Player " + player2.getName() + ": " + player2.getWins());
+                System.out.println("Wins for Player " + player1.getChecker().getValue() + ": " + player1.getWins());
+                System.out.println("Wins for Player " + player2.getChecker().getValue() + ": " + player2.getWins());
                 System.out.println("Thank you for playing Tic Tac Toe!");
                 break;
             }
         }
     }
 
-    public static TTTPlayer moveSequence(TTTPlayer p1, TTTPlayer p2, TTTBoard b){
+    public static Player moveSequence(Player p1, Player p2, TTTBoard b){
         while (true) {
             if (move(p1, b) == false) {
                 p1.incrementWins();
@@ -62,7 +61,7 @@ public class TicTacToe implements Game{
         }
     }
 
-    private static boolean move(TTTPlayer p, TTTBoard b) {
+    private static boolean move(Player p, TTTBoard b) {
         int move;
 
         System.out.println("Player "+p.getChecker().getValue()+" Enter your move:");
