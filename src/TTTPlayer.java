@@ -8,8 +8,12 @@ public class TTTPlayer extends Player{
 
     public TTTPlayer(String c){
         super(c);
-        this.checker = new Checker(c);
 
+        try {
+            this.checker = new Checker(c);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Not Valid Tic Tac Toe PLayer");
+        }
     }
 
     public Checker getChecker(){
