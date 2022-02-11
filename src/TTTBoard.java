@@ -1,10 +1,15 @@
+/**
+ * TTTBoard --- Class that represents a Board for Tic Tac Toe Game
+ * @author Noah Jean-Baptiste
+ */
+
 public class TTTBoard extends Board {
 
     public TTTBoard(int s){
         super(s);
     }
 
-    public boolean addChecker(Player p, int loc ){
+    public boolean addChecker(TTTPlayer p, int loc ){
         loc -=1;
 //        int r = loc/super.getHeight();
 //        int c = loc%super.getWidth();
@@ -25,53 +30,55 @@ public class TTTBoard extends Board {
     }
 
     public boolean isWinFor(Player p) {
-        return horizontalWin(p) || verticalWin(p) || diagonalWin(p);
+        return horizontalWin((TTTPlayer) p) || verticalWin((TTTPlayer)p) || diagonalWin((TTTPlayer)p);
     }
 
-    private boolean horizontalWin(Player p){
+    private boolean horizontalWin(TTTPlayer p){
         boolean isWin = true;
-        for(int r = 0; r<this.getHeight(); r++){
-            isWin = true;
-            for (int c = 0; c < this.getWidth(); c++) {
-                Object cellContents = super.getTiles()[(r*this.getWidth())+c].getContents();
-                if (cellContents != null) {
-                    isWin = isWin && (cellContents.equals(p.getChecker()));
-                } else {
-                    isWin = false;
-                }
+        for(int i = 0; i<(this.getHeight()*this.getWidth()); i++){
+            Object cellContents = super.getTiles()[i].getContents();
+            if (cellContents != null) {
+                isWin = isWin && (cellContents.equals(p.getChecker()));
+            } else {
+                isWin = false;
             }
-            if (isWin == true){
-                return true;
+
+            if (i%this.getWidth() == this.getWidth()-1) {
+                if (isWin == true) {
+                    return true;
+                }
+                isWin = true;
             }
         }
-        return isWin;
+        return false;
     }
 
-    private boolean verticalWin(Player p){
+    private boolean verticalWin(TTTPlayer p){
         boolean isWin = true;
-        for(int c = 0; c< this.getWidth(); c++){
-            isWin = true;
-            for (int r = 0; r < this.getHeight(); r++) {
-                //System.out.println((r*getHeight())+c);
-                Object cellContents = super.getTiles()[(r*this.getHeight())+c].getContents();
-                if (cellContents != null) {
-                    isWin = isWin && (cellContents.equals(p.getChecker()));
-                } else {
-                    isWin = false;
-                }
+        int col = 0;
+        for(int i = 0; i<(this.getHeight()*this.getWidth()); i++){
+            Object cellContents = super.getTiles()[((i%this.getHeight())*this.getHeight())+col].getContents();
+            if (cellContents != null) {
+                isWin = isWin && (cellContents.equals(p.getChecker()));
+            } else {
+                isWin = false;
             }
-            if (isWin == true){
-                return true;
+            if (i%this.getHeight() == this.getHeight()-1) {
+                if (isWin == true) {
+                    return true;
+                }
+                col++;
+                isWin = true;
             }
         }
-        return isWin;
+        return false;
     }
 
-    private boolean diagonalWin(Player p){
+    private boolean diagonalWin(TTTPlayer p){
         return leftDiagonalWin(p) || rightDiagonalWin(p);
     }
 
-    private boolean leftDiagonalWin(Player p){
+    private boolean leftDiagonalWin(TTTPlayer p){
         boolean isWin = true;
         int offset = 0;
         for(int i = 0; i<this.getWidth(); i++){
@@ -89,7 +96,7 @@ public class TTTBoard extends Board {
         return isWin;
     }
 
-    private boolean rightDiagonalWin(Player p){
+    private boolean rightDiagonalWin(TTTPlayer p){
         boolean isWin = true;
         int offset = 2;
         for(int i = 0; i<this.getWidth(); i++){

@@ -1,27 +1,44 @@
+/**
+ * Player --- Abstract class that represents a Player in a Game
+ * @author Noah Jean-Baptiste
+ */
+
 public class Player {
-    private Checker checker;
     private int wins;
-    public Player(String c){
+    private String name;
+
+    public Player(String n){
         this.wins = 0;
-        this.checker = new Checker(c);
+        this.name = n;
     }
 
-    public Checker getChecker(){
-        return this.checker;
+    public Player(){
+        this.wins = 0;
+        this.name = "";
     }
 
     public int getWins() {
         return wins;
     }
 
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
     public void incrementWins() {
         this.wins++;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     public String toString() {
-        return "Player{" +
-                "checker=" + checker.getValue() +
-                ", wins=" + wins +
-                '}';
+        return "Player " + name + ": \nWins = "+wins;
     }
 }
