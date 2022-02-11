@@ -6,29 +6,24 @@
 import java.util.Objects;
 
 public class Checker extends Piece{
-    private String value;
 
+    /**
+     * Constructor creates Cell with Object contents
+     * @param c checker type
+     */
     public Checker(String c) throws IllegalArgumentException {
         if (!c.equals("X") && !c.equals("x") && !c.equals("O") && !c.equals("o")){
             throw new IllegalArgumentException("Not Valid Checker: X or O");
         }
-        this.value = c.toUpperCase();
+        this.setName(c.toUpperCase());
     }
 
-    public String getValue() {
-        return value;
+    /**
+     * No-Arg Constructor Throws Illegal Argument Exception
+     */
+    public Checker(){
+        this("");
     }
 
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    public boolean equals(Checker c) {
-       if (this.value.equals(c.getValue())){
-           return true;
-       }
-       return false;
-    }
 
 }

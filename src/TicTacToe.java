@@ -6,7 +6,9 @@ import java.util.*;
 
 public class TicTacToe implements Game{
 
-
+    /**
+     * Play method to begin game loop sequence for Tic Tac Toe
+     */
     public static void play(){
 
 
@@ -42,6 +44,12 @@ public class TicTacToe implements Game{
         }
     }
 
+    /**
+     * moveSequence begins the turn taking for the two players
+     * @param p1 TTTPlayer that takes the first turn
+     * @param p2 TTTPlayer that takes the second turn
+     * @param b TTTboard the game is played on
+     */
     public static TTTPlayer moveSequence(TTTPlayer p1, TTTPlayer p2, TTTBoard b){
         while (true) {
             if (move(p1, b) == false) {
@@ -60,6 +68,12 @@ public class TicTacToe implements Game{
         }
     }
 
+    /**
+     * move method completes one move from user input for a player
+     * @param p TTTPlayer who is moving
+     * @param b TTTboard the game is played on
+     * @return true if the move does not cause a win, false otherwise
+     */
     private static boolean move(TTTPlayer p, TTTBoard b) {
         int move;
 
@@ -74,6 +88,11 @@ public class TicTacToe implements Game{
         return true;
     }
 
+    /**
+     * validMove method checks to see if a move is valid or not within a game
+     * @param b TTTboard the game is being played on
+     * @reutn valid move from user
+     */
     private static int validMove(TTTBoard b) {
         int move;
 
@@ -86,6 +105,14 @@ public class TicTacToe implements Game{
             }
         }
     }
+
+
+    /**
+     * validInt method checks and obtains user input that is an int
+     * @param lBound lower bound for a valid int
+     * @param uBound upper bound for a valid int
+     * @reutn int from user input
+     */
 
     private static int validInt(int lBound, int uBound){
         Scanner console = new Scanner(System.in);
@@ -107,6 +134,11 @@ public class TicTacToe implements Game{
         return num;
     }
 
+
+    /**
+     * validInt char checks and obtains user input that is an cahr
+     * @reutn char from user input
+     */
     private static char validChar(){
         Scanner console = new Scanner(System.in);
         char c;
@@ -123,6 +155,11 @@ public class TicTacToe implements Game{
 
         return c;
     }
+
+    /**
+     * isYesNo method checks if a user input is y or n
+     * @reutn trye if the user selected yes, false otherwise
+     */
 
     private static boolean isYesNo(){
         char c;

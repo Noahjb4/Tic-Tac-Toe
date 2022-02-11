@@ -22,7 +22,7 @@ public class TTTPlayer extends Player{
 
     public String toString() {
         return "TTTPlayer{" +
-                "checker=" + checker.getValue() +
+                "checker=" + checker.getName() +
                 ", wins=" + this.getWins() +
                 '}';
     }

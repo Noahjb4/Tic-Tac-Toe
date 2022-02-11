@@ -5,10 +5,20 @@
 
 public class TTTBoard extends Board {
 
+    /**
+     * Constructor creates Cell array of specified size
+     * @param s size of the board
+     */
     public TTTBoard(int s){
         super(s);
     }
 
+    /**
+     * addChecker method add a TTTChecker to a specified location on the board
+     * @param p player whose checker is being added
+     * @param loc location for checker to be added
+     * @return true if Checker was added
+     */
     public boolean addChecker(TTTPlayer p, int loc ){
         loc -=1;
 //        int r = loc/super.getHeight();
@@ -21,6 +31,11 @@ public class TTTBoard extends Board {
         }
     }
 
+    /**
+     * isValidCell method checks if specified cell can be added to
+     * @param loc location the is being checked for validity
+     * @return true if cell is valid, false otherwise
+     */
     public boolean isValidCell(int loc){
         loc-=1;
         if (this.getTiles()[loc].getContents() == null) {
@@ -29,10 +44,20 @@ public class TTTBoard extends Board {
         return false;
     }
 
+    /**
+     * isWinFor method checks if this board is in a win state for a specified PLayer
+     * @param p Player that is being checked for winning
+     * @return true if specified player won, false otherwise
+     */
     public boolean isWinFor(Player p) {
         return horizontalWin((TTTPlayer) p) || verticalWin((TTTPlayer)p) || diagonalWin((TTTPlayer)p);
     }
 
+    /**
+     * horizontalWin method checks if this boared is in a horizontal win state for a specified TTTPLayer
+     * @param p TTTPlayer that is being checked for winning
+     * @return true if specified player won, false otherwise
+     */
     private boolean horizontalWin(TTTPlayer p){
         boolean isWin = true;
         for(int i = 0; i<(this.getHeight()*this.getWidth()); i++){
@@ -53,6 +78,12 @@ public class TTTBoard extends Board {
         return false;
     }
 
+
+    /**
+     * verticalWin method checks if this bored is in a vertical win state for a specified TTTPLayer
+     * @param p TTTPlayer that is being checked for winning
+     * @return true if specified player won, false otherwise
+     */
     private boolean verticalWin(TTTPlayer p){
         boolean isWin = true;
         int col = 0;
@@ -74,10 +105,20 @@ public class TTTBoard extends Board {
         return false;
     }
 
+    /**
+     * diagonalWin method checks if this bored is in a diagonal win state for a specified TTTPLayer
+     * @param p TTTPlayer that is being checked for winning
+     * @return true if specified player won, false otherwise
+     */
     private boolean diagonalWin(TTTPlayer p){
         return leftDiagonalWin(p) || rightDiagonalWin(p);
     }
 
+    /**
+     * leftDiagonalWin method checks if this bored is in a leftDiagonal win state for a specified TTTPLayer
+     * @param p TTTPlayer that is being checked for winning
+     * @return true if specified player won, false otherwise
+     */
     private boolean leftDiagonalWin(TTTPlayer p){
         boolean isWin = true;
         int offset = 0;
@@ -96,6 +137,11 @@ public class TTTBoard extends Board {
         return isWin;
     }
 
+    /**
+     * rightDiagonalWin method checks if this bored is in a RightDiagonal win state for a specified TTTPLayer
+     * @param p TTTPlayer that is being checked for winning
+     * @return true if specified player won, false otherwise
+     */
     private boolean rightDiagonalWin(TTTPlayer p){
         boolean isWin = true;
         int offset = 2;
@@ -113,6 +159,10 @@ public class TTTBoard extends Board {
         return isWin;
     }
 
+    /**
+     * isTie method checks if this bored is filled up before a win
+     * @return true if the game is a tie
+     */
     public boolean isTie() {
         for (int i = 0; i < (this.getWidth()*this.getHeight()); i++) {
             if (this.getTiles()[i].getContents() == null){
