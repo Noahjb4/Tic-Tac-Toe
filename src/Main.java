@@ -12,7 +12,6 @@ public class Main {
      * @return No return value.
      */
     public static void main(String args[]){
-        TicTacToe.play();
-
+        GameLauncher.launch();
     }
 }
