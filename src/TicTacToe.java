@@ -28,14 +28,14 @@ public class TicTacToe implements Game{
 
             if(winner == null) {
                 System.out.println("No winner, The game was a tie");
-                System.out.println("Would you like to play again?  [y/n]");
+                System.out.println("Would you like to play again?  [y, n]");
 
             } else {
                 System.out.println( "Player "+winner.getName() + " wins!");
-                System.out.println("Would you like to play again?  [y/n]");
+                System.out.println("Would you like to play again?  [y, n]");
             }
 
-            if (InputValidation.isParams('y', 'n') == false) {
+            if (InputValidation.validInput(new char[]{'y', 'n'}) == 'n') {
                 System.out.println("Wins for Player " + player1.getName() + ": " + player1.getWins());
                 System.out.println("Wins for Player " + player2.getName() + ": " + player2.getWins());
                 System.out.println("Thank you for playing Tic Tac Toe!");
@@ -49,6 +49,7 @@ public class TicTacToe implements Game{
      * @param p1 TTTPlayer that takes the first turn
      * @param p2 TTTPlayer that takes the second turn
      * @param b TTTboard the game is played on
+     * @return Winner TTTPlayer of the current game
      */
     public static TTTPlayer moveSequence(TTTPlayer p1, TTTPlayer p2, TTTBoard b){
         while (true) {
@@ -80,7 +81,7 @@ public class TicTacToe implements Game{
         System.out.println("Player "+p.getName()+" Enter your move:");
 
         move = validMove(b);
-        b.addChecker(p, move);
+        b.addChecker(p.getChecker(), move);
         System.out.println(b);
         if (b.isWinFor(p)){
             return false;

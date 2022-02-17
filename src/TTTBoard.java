@@ -15,16 +15,16 @@ public class TTTBoard extends Board {
 
     /**
      * addChecker method add a TTTChecker to a specified location on the board
-     * @param p player whose checker is being added
+     * @param c checker that is being added
      * @param loc location for checker to be added
      * @return true if Checker was added
      */
-    public boolean addChecker(TTTPlayer p, int loc ){
+    public boolean addChecker(Checker c, int loc ){
         loc -=1;
 //        int r = loc/super.getHeight();
 //        int c = loc%super.getWidth();
         if (this.isValidCell(loc+1)) {
-            this.getTiles()[loc] = new Cell(p.getChecker());
+            this.getTiles()[loc] = new Cell(c);
             return true;
         } else {
             return false;

@@ -12,11 +12,12 @@ public class GameLauncher {
      */
     public static void launch(){
         Scanner console = new Scanner(System.in);
-        System.out.println("Select a Game [1/2]:\n1. Tic Tac Toe\n2. Order and Chaos");
-        if (InputValidation.isParams('1','2')){
+        System.out.println("Select a Game [1, 2]:\n1. Tic Tac Toe\n2. Order and Chaos");
+        char input = InputValidation.validInput(new char[] {'1','2'});
+        if ( input== '1'){
             TicTacToe.play();
-        }else {
-
+        }else if (input == '2') {
+            OrderAndChaos.play();
         }
 
     }

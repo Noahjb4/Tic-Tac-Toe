@@ -5,7 +5,7 @@ import java.util.Objects;
  * @author Noah Jean-Baptiste
  */
 
-public class Player {
+public abstract class Player {
     private int wins;
     private String name;
 

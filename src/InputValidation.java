@@ -3,6 +3,7 @@
  * @author Noah Jean-Baptiste
  */
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputValidation {
@@ -58,24 +59,22 @@ public class InputValidation {
     }
 
     /**
-     * isParams method checks if a user input is check1 or check2
-     * @param check1 valid input that returns true
-     * @param check2 valid input that returns false
-     * @return true if the user selected check1, false if user selected check2
+     * validInput method checks if a user input is in input list
+     * @param checks valid inputs that return
+     * @return char of selected input
      */
 
-    public static boolean isParams(char check1, char check2){
+    public static char validInput(char[] checks){
         char c;
         while(true) {
             c = validChar();
-            if (c == check1) {
-                return true;
-            } else if (c == check2) {
-                return false;
-            } else {
-                System.out.println("Enter valid input ["+check1+"/" +check2+"]:");
-                continue;
+            for (char check : checks) {
+                if (c == check) {
+                    return c;
+                }
             }
+            System.out.println("Enter valid input "+ Arrays.toString(checks)+":");
+
         }
     }
 }
