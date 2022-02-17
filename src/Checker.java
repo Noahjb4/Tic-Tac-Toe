@@ -12,7 +12,7 @@ public class Checker extends Piece{
      * @param c checker type
      */
     public Checker(String c) throws IllegalArgumentException {
-        if (!c.equals("X") && !c.equals("x") && !c.equals("O") && !c.equals("o")){
+        if (!c.equalsIgnoreCase("X") && !c.equalsIgnoreCase("O")){
             throw new IllegalArgumentException("Not Valid Checker: X or O");
         }
         this.setName(c.toUpperCase());
@@ -25,5 +25,10 @@ public class Checker extends Piece{
         this("");
     }
 
-
+    public void setName(String n) {
+        if (!n.equalsIgnoreCase("X") && !n.equalsIgnoreCase("O")){
+            throw new IllegalArgumentException("Not Valid Checker: X or O");
+        }
+        super.setName(n.toUpperCase());
+    }
 }

@@ -22,6 +22,14 @@ public class OACPlayer extends Player {
     }
 
     public Checker getChecker(){
-        return checker;
+        return this.checker;
+    }
+
+    public void switchChecker(){
+        if (this.checker.getName().equals("X")){
+            this.checker.setName("O");
+        } else {
+            this.checker.setName("X");
+        }
     }
 }
