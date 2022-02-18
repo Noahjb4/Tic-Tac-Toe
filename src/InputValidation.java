@@ -77,4 +77,30 @@ public class InputValidation {
 
         }
     }
+
+    /**
+     * validInput method checks if a user input is in input list
+     * @param checks valid inputs that return
+     * @param ignore Boolean that determines if cases should be ignored in the comparison
+     * @return char of selected input
+     */
+    public static char validInput(char[] checks, boolean ignore){
+        char c;
+        while(true) {
+            c = validChar();
+            for (char check : checks) {
+                if(ignore) {
+                    if (("" + c).equalsIgnoreCase("" + check)) {
+                        return Character.toLowerCase(c);
+                    }
+                }else{
+                    if (c == check) {
+                        return c;
+                    }
+                }
+            }
+            System.out.println("Enter valid input "+ Arrays.toString(checks)+":");
+
+        }
+    }
 }

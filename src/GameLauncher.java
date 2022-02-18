@@ -11,13 +11,19 @@ public class GameLauncher {
      * Launch method to begin game selection and running
      */
     public static void launch(){
-        Scanner console = new Scanner(System.in);
-        System.out.println("Select a Game [1, 2]:\n1. Tic Tac Toe\n2. Order and Chaos");
-        char input = InputValidation.validInput(new char[] {'1','2'});
-        if ( input== '1'){
-            TicTacToe.play();
-        }else if (input == '2') {
-            OrderAndChaos.play();
+
+        while (true) {
+            Scanner console = new Scanner(System.in);
+            System.out.println("Select a Game [1, 2]:\n1. Tic Tac Toe\n2. Order and Chaos\n3. Quit");
+            char input = InputValidation.validInput(new char[]{'1', '2', '3'});
+            if (input == '1') {
+                TicTacToe.play();
+            } else if (input == '2') {
+                OrderAndChaos.play();
+            } else if (input == '3') {
+                System.out.println("Thank you for Playing!");
+                break;
+            }
         }
 
     }

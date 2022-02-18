@@ -18,6 +18,10 @@ public class Checker extends Piece{
         this.setName(c.toUpperCase());
     }
 
+    public Checker(char c){
+        this(""+c);
+    }
+
     /**
      * No-Arg Constructor Throws Illegal Argument Exception
      */

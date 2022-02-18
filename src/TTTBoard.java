@@ -164,8 +164,8 @@ public class TTTBoard extends Board {
      * @return true if the game is a tie
      */
     public boolean isTie() {
-        for (int i = 0; i < (this.getWidth()*this.getHeight()); i++) {
-            if (this.getTiles()[i].getContents() == null){
+        for (Cell c: this.getTiles()) {
+            if (c.getContents() == null){
                 return false;
             }
         }

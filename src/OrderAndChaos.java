@@ -1,8 +1,8 @@
 public class OrderAndChaos implements Game{
     public static void play(){
         OACBoard b;
-        OACPlayer player1 = new OACPlayer("Order");
-        OACPlayer player2 = new OACPlayer("Chaos");
+        OACPlayer player1 = new OACPlayer("1","Order");
+        OACPlayer player2 = new OACPlayer("2","Chaos");
         OACPlayer winner;
 
         while(true) {
@@ -17,8 +17,8 @@ public class OrderAndChaos implements Game{
 
 
             if (InputValidation.validInput(new char[]{'y', 'n'}) == 'n') {
-                System.out.println("Wins for Player " + player1.getName() + ": " + player1.getWins());
-                System.out.println("Wins for Player " + player2.getName() + ": " + player2.getWins());
+                System.out.println("Wins for Team " + player1.getTeam() + ": " + player1.getWins());
+                System.out.println("Wins for Team " + player2.getTeam() + ": " + player2.getWins());
                 System.out.println("Thank you for playing Order And Chaos!");
                 break;
             }
@@ -34,12 +34,20 @@ public class OrderAndChaos implements Game{
      */
     public static OACPlayer moveSequence(OACPlayer p1, OACPlayer p2, OACBoard b){
         while (true) {
-            if (move(p1, b) == false) {
+            move(p1, b);
+            if (b.isWinFor(p1)) {
                 p1.incrementWins();
                 return p1;
+            }else if (b.isWinFor(p2)){
+                p2.incrementWins();
+                return p2;
             }
 
-            if (move(p2, b) == false) {
+            move(p2, b);
+            if (b.isWinFor(p1)) {
+                p1.incrementWins();
+                return p1;
+            }else if (b.isWinFor(p2)){
                 p2.incrementWins();
                 return p2;
             }
@@ -52,26 +60,29 @@ public class OrderAndChaos implements Game{
      * @param b OACboard the game is played on
      * @return true if the move does not cause a win, false otherwise
      */
-    private static boolean move(OACPlayer p, OACBoard b) {
+    private static void move(OACPlayer p, OACBoard b) {
         Checker checker;
         int move;
 
+        System.out.println("It is the "+p.getTeam()+" team's turn!");
         System.out.println("Player "+p.getName()+" Enter your checker:");
-        checker = p.getChecker();
+
+        if (InputValidation.validInput(new char[] {'x','o'},true) == 'x'){
+            checker = p.getCheckerX();
+        } else {
+            checker = p.getCheckerO();
+        }
 
         System.out.println("Player "+p.getName()+" Enter your move:");
         move = validMove(b);
+
         b.addChecker(checker, move);
         System.out.println(b);
-        if (b.isWinFor(p)){
-            return false;
-        }
-        return true;
     }
 
     /**
      * validMove method checks to see if a move is valid or not within a game
-     * @param b OACboard the game is being played on
+     * @param b OACBoard the game is being played on
      * @reutn valid move from user
      */
     private static int validMove(OACBoard b) {
@@ -79,11 +90,11 @@ public class OrderAndChaos implements Game{
 
         while (true){
             move = InputValidation.validInt(1, (b.getHeight() * b.getWidth()));
-//            if (b.isValidCell(move)) {
-//                return move;
-//            } else {
-//                System.out.println("Cell already Filled!\nEnter an valid move: ");
-//            }
+            if (b.isValidCell(move)) {
+                return move;
+            } else {
+                System.out.println("Cell already Filled!\nEnter an valid move: ");
+            }
         }
     }
 }
