@@ -1,4 +1,13 @@
+/**
+ * OrderAndChaos --- Class that implements Game interface and runs Order and Chaos Game
+ * @author Noah Jean-Baptiste
+ */
+
 public class OrderAndChaos implements Game{
+
+    /**
+     * Play method to begin game loop sequence for Order and Chaos
+     */
     public static void play(){
         OACBoard b;
         OACPlayer player1 = new OACPlayer("1","Order");
