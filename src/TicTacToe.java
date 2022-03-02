@@ -11,7 +11,6 @@ public class TicTacToe implements Game{
      */
     public static void play(){
 
-
         int size;
         TTTBoard b;
         TTTPlayer player1 = new TTTPlayer("X");

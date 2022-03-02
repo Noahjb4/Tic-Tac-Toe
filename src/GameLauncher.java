@@ -14,13 +14,15 @@ public class GameLauncher {
 
         while (true) {
             Scanner console = new Scanner(System.in);
-            System.out.println("Select a Game [1, 2]:\n1. Tic Tac Toe\n2. Order and Chaos\n3. Quit");
-            char input = InputValidation.validInput(new char[]{'1', '2', '3'});
+            System.out.println("Select a Game:\n1. Tic Tac Toe\n2. Order and Chaos\n3. Connect Four\n4. Quit");
+            char input = InputValidation.validInput(new char[]{'1', '2', '3', '4'});
             if (input == '1') {
                 TicTacToe.play();
             } else if (input == '2') {
                 OrderAndChaos.play();
             } else if (input == '3') {
+                ConnectFour.play();
+            } else if (input == '4') {
                 System.out.println("Thank you for Playing!");
                 break;
             }
