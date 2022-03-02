@@ -145,19 +145,24 @@ public class CFBoard extends Board{
      */
     private boolean leftDiagonalWin(Checker check){
         Checker cellContents;
+        int count = 0;
         boolean isWin = true;
-        int[] possible = {0,1,this.getWidth(), this.getWidth()+1};
-        for (int start : possible) {
-            for (int i = 0; i < (this.getWidth() - 1); i++) {
-                cellContents = (Checker) this.getTiles()[(i*(this.getWidth()+1))+start].getContents();
-                if (cellContents == null || !cellContents.equals(check)) {
-                    isWin = false;
-                    break;
+        for (int i = 0; i<(this.getHeight()-this.winCondition+1)*this.getWidth(); i+=this.getWidth()) {
+            for (int j = i; j<(i+this.getWidth()-this.winCondition+1); j+=1) {
+                while(count < this.winCondition) {
+                    cellContents = (Checker) this.getTiles()[j+(count*(this.getWidth()+1))].getContents();
+                    if (cellContents == null || !cellContents.equals(check)) {
+                        isWin = false;
+                        break;
+                    }
+                    count++;
                 }
+                count = 0;
+                if(isWin) {
+                    return true;
+                } isWin = true;
             }
-            if(isWin) {
-                return true;
-            } isWin = true;
+
         }
         return false;
 
@@ -170,19 +175,24 @@ public class CFBoard extends Board{
      */
     private boolean rightDiagonalWin(Checker check){
         Checker cellContents;
+        int count = 0;
         boolean isWin = true;
-        int[] possible = {this.getWidth()-1, this.getWidth()-2,(this.getWidth()*2)-1,(this.getWidth()*2)-2};
-        for (int start : possible) {
-            for (int i = 0; i < (this.getWidth() - 1); i++) {
-                cellContents = (Checker) this.getTiles()[(i*(this.getWidth()-1))+start].getContents();
-                if (cellContents == null || !cellContents.equals(check)) {
-                    isWin = false;
-                    break;
+        for (int i = this.winCondition-1; i<(this.getHeight()-this.winCondition+1)*this.getWidth(); i+=this.getWidth()) {
+            for (int j = i; j<i+(i%this.getWidth())+1; j++) {
+                while(count < this.winCondition) {
+                    cellContents = (Checker) this.getTiles()[j+(count*(this.getWidth()-1))].getContents();
+                    if (cellContents == null || !cellContents.equals(check)) {
+                        isWin = false;
+                        break;
+                    }
+                    count++;
                 }
+                count = 0;
+                if(isWin) {
+                    return true;
+                } isWin = true;
             }
-            if(isWin) {
-                return true;
-            } isWin = true;
+
         }
         return false;
     }
