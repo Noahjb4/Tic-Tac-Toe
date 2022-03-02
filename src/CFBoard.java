@@ -1,11 +1,15 @@
 public class CFBoard extends Board{
     private int lastMove;
+    private int lastCol;
     private int totalCells;
+    private int winCondition;
 
     public CFBoard (){
         super(6, 7);
         this.lastMove = -1;
+        this.lastCol = -1;
         this.totalCells = this.getHeight()*this.getWidth();
+        this.winCondition = 4;
 
     }
 
@@ -17,13 +21,13 @@ public class CFBoard extends Board{
      */
     public boolean addChecker(Checker c, int loc ){
         loc -=1;
-        this.lastMove = loc;
-//
+        this.lastCol = loc;
         if (this.isValidRow(loc+1)) {
             for(int i = loc; i < (this.getHeight()*this.getWidth()); i+=this.getWidth()){
                 int next = i+this.getWidth();
 
                 if(this.isValidCell(next) == false || this.getTiles()[next].getContents() != null){
+                    this.lastMove = i;
                     this.getTiles()[i] = new Cell(c);
                     break;
                 }
@@ -68,7 +72,7 @@ public class CFBoard extends Board{
      * @return true if specified player won, false otherwise
      */
     public boolean isWinFor(Player p) {
-        return horizontalWin(((CFPlayer) p).getChecker()) && verticalWin(((CFPlayer) p).getChecker()) && diagonalWin(((CFPlayer) p).getChecker());
+        return horizontalWin(((CFPlayer) p).getChecker()) || verticalWin(((CFPlayer) p).getChecker()) || diagonalWin(((CFPlayer) p).getChecker());
 
     }
 
@@ -83,10 +87,9 @@ public class CFBoard extends Board{
         int start = this.lastMove-(this.lastMove%this.getWidth());
         boolean isWin = true;
 
-        for (int offset = 0; offset<2; offset++) {
-            start +=offset;
-            for (int i = start; i < (start + (this.getWidth() - 1)); i++) {
-                cellContents = (Checker) this.getTiles()[i].getContents();
+        for (int i = start; i<(start+this.getWidth()-4); i++) {
+            for (int j = i; j < (i + this.winCondition); j++) {
+                cellContents = (Checker) this.getTiles()[j].getContents();
                 if (cellContents == null || !cellContents.equals(check)) {
                     isWin = false;
                     break;
@@ -96,9 +99,9 @@ public class CFBoard extends Board{
                 return true;
             }isWin = true;
         }
-
         return false;
     }
+
     /**
      * verticalWin method checks if this board is in a vertical win state for a specified CFPLayer
      * @param check CFPlayer that is being checked for winning
@@ -106,13 +109,13 @@ public class CFBoard extends Board{
      */
     private boolean verticalWin(Checker check){
         Checker cellContents;
-        int start = this.lastMove%this.getWidth();
+        int start = this.lastCol;
+        int end = start+((this.getHeight()-1)*this.getWidth()) - (this.getWidth()*(this.winCondition-1));
         boolean isWin = true;
 
-        for (int offset = 0; offset<2; offset++) {
-            start +=(offset*this.getHeight());
-            for (int i = 0; i < (this.getHeight() - 1); i++) {
-                cellContents = (Checker) this.getTiles()[(i*this.getHeight())+start].getContents();
+        for (int i = start; i<=end; i+=this.getWidth()) {
+            for (int j = i; j < (i + (this.winCondition*this.getWidth())); j+=this.getWidth()) {
+                cellContents = (Checker) this.getTiles()[j].getContents();
                 if (cellContents == null || !cellContents.equals(check)) {
                     isWin = false;
                     break;

@@ -38,6 +38,7 @@ public class TicTacToe implements Game{
                 System.out.println("Wins for Player " + player1.getName() + ": " + player1.getWins());
                 System.out.println("Wins for Player " + player2.getName() + ": " + player2.getWins());
                 System.out.println("Thank you for playing Tic Tac Toe!");
+                System.out.print('\n');
                 break;
             }
         }

@@ -29,6 +29,7 @@ public class OrderAndChaos implements Game{
                 System.out.println("Wins for Team " + player1.getTeam() + ": " + player1.getWins());
                 System.out.println("Wins for Team " + player2.getTeam() + ": " + player2.getWins());
                 System.out.println("Thank you for playing Order And Chaos!");
+                System.out.print('\n');
                 break;
             }
         }

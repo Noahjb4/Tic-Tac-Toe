@@ -34,7 +34,8 @@ public class ConnectFour implements Game{
             if (InputValidation.validInput(new char[]{'y', 'n'}) == 'n') {
                 System.out.println("Wins for Player " + player1.getName() + ": " + player1.getWins());
                 System.out.println("Wins for Player " + player2.getName() + ": " + player2.getWins());
-                System.out.println("Thank you for playing Tic Tac Toe!");
+                System.out.println("Thank you for playing Connect Four!");
+                System.out.print('\n');
                 break;
             }
         }
@@ -68,7 +69,7 @@ public class ConnectFour implements Game{
     /**
      * move method completes one move from user input for a player
      * @param p CFPlayer who is moving
-     * @param b CFboard the game is played on
+     * @param b CFBoard the game is played on
      * @return true if the move does not cause a win, false otherwise
      */
     private static boolean move(CFPlayer p, CFBoard b) {
