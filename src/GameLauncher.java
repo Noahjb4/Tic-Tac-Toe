@@ -1,6 +1,6 @@
 import java.util.Scanner;
 /**
- * Main --- Game controller that launches specified game
+ * Game Launcher --- Game controller that launches specified game
  * @author Noah Jean-Baptiste
  */
 
